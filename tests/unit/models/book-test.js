@@ -3,7 +3,7 @@ import Ember from 'ember';
 
 moduleForModel('book', 'Unit | Model | book', {
   // Specify the other units that are required for this test.
-  needs: ['model:publisher']
+  needs: ['model:publisher', 'model:author']
 });
 
 test('it exists', function(assert) {
@@ -36,4 +36,12 @@ test('profile relationship', function(assert) {
 
   assert.equal(relationship.key, 'publisher');
   assert.equal(relationship.kind, 'belongsTo');
+});
+
+test('authors relationship', function(assert) {
+  var model = this.store().modelFor('book');
+  var relationship = Ember.get(model, 'relationshipsByName').get('authors');
+
+  assert.equal(relationship.key, 'authors');
+  assert.equal(relationship.kind, 'hasMany');
 });
