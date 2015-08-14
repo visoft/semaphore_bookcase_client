@@ -3,7 +3,7 @@ import Ember from 'ember';
 
 moduleForModel('book', 'Unit | Model | book', {
   // Specify the other units that are required for this test.
-  needs: ['model:publisher', 'model:author']
+  needs: ['model:publisher', 'model:author', 'ember-validations@validator:local/presence', 'ember-validations@validator:local/length']
 });
 
 test('it exists', function(assert) {
@@ -44,4 +44,36 @@ test('authors relationship', function(assert) {
 
   assert.equal(relationship.key, 'authors');
   assert.equal(relationship.kind, 'hasMany');
+});
+
+test('title should be required', function(assert){
+  var model = this.subject();
+  Ember.run(function(){
+    model.set('title', '');
+  });
+  assert.equal(model.get('isValid'), false, 'Object is valid without a title');
+});
+
+test('isbn should be required', function(assert){
+  var model = this.subject();
+  Ember.run(function(){
+    model.set('isbn', '');
+  });
+  assert.equal(model.get('isValid'), false, 'Object is valid without an isbn');
+});
+
+test('cover should be required', function(assert){
+  var model = this.subject();
+  Ember.run(function(){
+    model.set('cover', '');
+  });
+  assert.equal(model.get('isValid'), false, 'Object is valid without a cover');
+});
+
+test('isbn should be at least 10 characters long', function(assert){
+  var model = this.subject();
+  Ember.run(function(){
+    model.set('name', '012345678');
+  });
+  assert.equal(model.get('isValid'), false, 'Object is valid with a short isbn number');
 });
