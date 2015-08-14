@@ -4,7 +4,8 @@ import EmberValidations from 'ember-validations';
 export default DS.Model.extend(EmberValidations, {
   validations: {
     name: {
-      presence: true
+      presence: true,
+      length: 5
     }
   },
   name: DS.attr('string'),
