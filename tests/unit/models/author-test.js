@@ -3,7 +3,7 @@ import Ember from 'ember';
 
 moduleForModel('author', 'Unit | Model | author', {
   // Specify the other units that are required for this test.
-  needs: ['model:book']
+  needs: ['model:book', 'ember-validations@validator:local/presence']
 });
 
 test('it exists', function(assert) {
@@ -24,4 +24,12 @@ test('books relationship', function(assert) {
 
   assert.equal(relationship.key, 'books');
   assert.equal(relationship.kind, 'hasMany');
+});
+
+test('name should be required', function(assert){
+  var model = this.subject();
+  Ember.run(function(){
+    model.set('name', '');
+  });
+  assert.equal(model.get('isValid'), false, 'Object is valid without a name');
 });
