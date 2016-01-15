@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  books: []
+  books: [],
+  sortKeys: [],
+  sortedBooks: Ember.computed.sort('books', 'sortKeys')
 });

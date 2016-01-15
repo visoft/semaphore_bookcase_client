@@ -26,3 +26,20 @@ test('it renders a list of books', function(assert) {
 
   assert.equal(this.$('.book').length, 2);
 });
+
+test('it orders a list of books by title', function(assert){
+  assert.expect(2);
+  var book1 = FactoryGuy.make('book', { title: 'Book 1' });
+  var book2 = FactoryGuy.make('book', { title: 'Book 2' });
+
+  this.set('books', [book2, book1]);
+  this.set('sortKeys', ['title']);
+  this.render(hbs`{{book-list books=books sortKeys=sortKeys}}`);
+
+  assert.equal(this.$('.book').text(), "Book 1Book 2");
+
+  this.set('sortKeys', ['title:desc']);
+  assert.equal(this.$('.book').text(), "Book 2Book 1");
+});
+
+
