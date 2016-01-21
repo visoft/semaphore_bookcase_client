@@ -1,3 +1,5 @@
 {{#each filteredBooks as |book|}}
-  <div class="book">{{book.title}}</div>
+  <div class="book" data-title="{{book.title}}">
+    <img src="{{book.cover}}" height="160" />
+  </div>
 {{/each}}

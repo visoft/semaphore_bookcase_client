@@ -1,0 +1,9 @@
+.book {
+  float: left;
+  margin: 20px 10px;
+}
+.book img {
+  -webkit-box-shadow: 7px 7px 7px #333;
+  -moz-box-shadow: 7px 7px 7px #333;
+  box-shadow: 7px 7px 7px #333;
+}

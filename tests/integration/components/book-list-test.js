@@ -28,7 +28,7 @@ test('it renders a list of books', function(assert) {
 });
 
 test('it orders a list of books by title', function(assert){
-  assert.expect(2);
+  assert.expect(4);
   var book1 = FactoryGuy.make('book', { title: 'Book 1' });
   var book2 = FactoryGuy.make('book', { title: 'Book 2' });
 
@@ -36,10 +36,12 @@ test('it orders a list of books by title', function(assert){
   this.set('sortKeys', ['title']);
   this.render(hbs`{{book-list books=books sortKeys=sortKeys}}`);
 
-  assert.equal(this.$('.book').text(), "Book 1Book 2");
+  assert.equal(this.$('.book:eq(0)').data('title'), "Book 1");
+  assert.equal(this.$('.book:eq(1)').data('title'), "Book 2");
 
   this.set('sortKeys', ['title:desc']);
-  assert.equal(this.$('.book').text(), "Book 2Book 1");
+  assert.equal(this.$('.book:eq(0)').data('title'), "Book 2");
+  assert.equal(this.$('.book:eq(1)').data('title'), "Book 1");
 });
 
 test('it filters a list of books by title', function(assert) {
@@ -50,6 +52,6 @@ test('it filters a list of books by title', function(assert) {
   this.set('filter', '1');
   this.render(hbs`{{book-list books=books filter=filter}}`);
 
-  assert.equal(this.$('.book').text(), "Book 1");
+  assert.equal(this.$('.book').data('title'), "Book 1");
 });
 
