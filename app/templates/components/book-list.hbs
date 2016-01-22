@@ -1,3 +1,10 @@
+<div class="well">
+  <form class="form-inline">
+    <div class="form-group">
+      {{input type="text" value=filter class="form-control" id="filter" placeholder="Search"}}
+    </div>
+  </form>
+</div>
 {{#each filteredBooks as |book|}}
   <div class="book" data-title="{{book.title}}">
     <img src="{{book.cover}}" height="160" />
