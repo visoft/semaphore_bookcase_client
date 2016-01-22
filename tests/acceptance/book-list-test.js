@@ -33,3 +33,13 @@ test('should filter a list of books', function(assert) {
   });
 });
 
+test('should sort a list of books ascending by default', function(assert) {
+  TestHelper.handleFindAll('book', {title: 'Book 2'}, {title: 'Book 1'});
+  visit('/books');
+
+  andThen(function() {
+    assert.equal(find('.book:eq(0)').data('title'), 'Book 1');
+    assert.equal(find('.book:eq(1)').data('title'), 'Book 2');
+  });
+});
+

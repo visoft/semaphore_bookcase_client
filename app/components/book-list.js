@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   books: [],
-  sortKeys: [],
+  sortKeys: ['title'],
   filter: '',
 
   sortedBooks: Ember.computed.sort('books', 'sortKeys'),
