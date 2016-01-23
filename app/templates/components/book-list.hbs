@@ -1,7 +1,19 @@
 <div class="well">
   <form class="form-inline">
     <div class="form-group">
-      {{input type="text" value=filter class="form-control" id="filter" placeholder="Search"}}
+      {{input type="text" value=filter class="form-control"
+        id="filter" placeholder="Search"}}
+    </div>
+    <div class="form-group pull-right">
+      <label>Sort By Title:</label>
+      <div class="btn-group" data-toggle="buttons">
+        <label id="ascending" class="btn btn-primary active" {{action 'sortBy' 'title:asc'}}>
+          <input type="radio" name="sort" checked> Ascending
+      </label>
+      <label id="descending" class="btn btn-primary" {{action 'sortBy' 'title:desc'}}>
+        <input type="radio" name="sort"> Descending
+      </label>
+      </div>
     </div>
   </form>
 </div>

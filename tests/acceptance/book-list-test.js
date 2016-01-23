@@ -43,3 +43,26 @@ test('should sort a list of books ascending by default', function(assert) {
   });
 });
 
+test('should sort a list of books descending when selected', function(assert) {
+  TestHelper.handleFindAll('book', {title: 'Book 1'}, {title: 'Book 2'});
+  visit('/books');
+  click('#descending');
+
+  andThen(function() {
+    assert.equal(find('.book:eq(0)').data('title'), 'Book 2');
+    assert.equal(find('.book:eq(1)').data('title'), 'Book 1');
+  });
+});
+
+test('should sort a list of books ascending when selected', function(assert) {
+  TestHelper.handleFindAll('book', {title: 'Book 2'}, {title: 'Book 1'});
+  visit('/books');
+  click('#descending'); // Sort descending because of the default sort
+  click('#ascending');
+
+  andThen(function() {
+    assert.equal(find('.book:eq(0)').data('title'), 'Book 1');
+    assert.equal(find('.book:eq(1)').data('title'), 'Book 2');
+  });
+});
+
