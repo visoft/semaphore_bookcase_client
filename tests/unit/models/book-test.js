@@ -73,7 +73,7 @@ test('cover should be required', function(assert){
 test('isbn should be at least 10 characters long', function(assert){
   var model = this.subject();
   Ember.run(function(){
-    model.set('name', '012345678');
+    model.set('isbn', '012345678');
   });
   assert.equal(model.get('isValid'), false, 'Object is valid with a short isbn number');
 });
