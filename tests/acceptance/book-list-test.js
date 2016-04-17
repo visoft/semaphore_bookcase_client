@@ -5,7 +5,7 @@ import TestHelper from 'ember-data-factory-guy/factory-guy-test-helper';
 moduleForAcceptance('Acceptance | book list');
 
 test('visiting /books', function(assert) {
-  TestHelper.handleFindAll('book', 0);
+  TestHelper.mockFindAll('book', 0);
   visit('/books');
 
   andThen(function() {
@@ -14,7 +14,7 @@ test('visiting /books', function(assert) {
 });
 
 test('should show list of books', function(assert) {
-  TestHelper.handleFindAll('book', 3);
+  TestHelper.mockFindAll('book', 3);
   visit('/books');
 
   andThen(function() {
@@ -23,7 +23,7 @@ test('should show list of books', function(assert) {
 });
 
 test('should filter a list of books', function(assert) {
-  TestHelper.handleFindAll('book', {title: 'Book 1'}, {title: 'Book 2'});
+  TestHelper.mockFindAll('book', {title: 'Book 1'}, {title: 'Book 2'});
   visit('/books');
   fillIn('#filter', '2');
 
@@ -34,7 +34,7 @@ test('should filter a list of books', function(assert) {
 });
 
 test('should sort a list of books ascending by default', function(assert) {
-  TestHelper.handleFindAll('book', {title: 'Book 2'}, {title: 'Book 1'});
+  TestHelper.mockFindAll('book', {title: 'Book 2'}, {title: 'Book 1'});
   visit('/books');
 
   andThen(function() {
@@ -44,7 +44,7 @@ test('should sort a list of books ascending by default', function(assert) {
 });
 
 test('should sort a list of books descending when selected', function(assert) {
-  TestHelper.handleFindAll('book', {title: 'Book 1'}, {title: 'Book 2'});
+  TestHelper.mockFindAll('book', {title: 'Book 1'}, {title: 'Book 2'});
   visit('/books');
   click('#descending');
 
@@ -55,7 +55,7 @@ test('should sort a list of books descending when selected', function(assert) {
 });
 
 test('should sort a list of books ascending when selected', function(assert) {
-  TestHelper.handleFindAll('book', {title: 'Book 2'}, {title: 'Book 1'});
+  TestHelper.mockFindAll('book', {title: 'Book 2'}, {title: 'Book 1'});
   visit('/books');
   click('#descending'); // Sort descending because of the default sort
   click('#ascending');
