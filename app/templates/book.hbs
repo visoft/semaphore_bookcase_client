@@ -1,0 +1,11 @@
+<div class="container">
+  <img src={{model.cover}} alt={{model.title}} />
+  <h1 class="title">{{model.title}}</h1>
+  <h3 class="publisher">{{model.publisher.name}}</h3>
+  <h4 class="isbn">{{model.isbn}}</h4>
+  <ul>
+    {{#each model.authors as |author|}}
+    <li class="author">{{author.name}}</li>
+    {{/each}}
+  </ul>
+</div>
