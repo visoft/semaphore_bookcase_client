@@ -17,6 +17,6 @@ export default DS.Model.extend(EmberValidations, {
   title: DS.attr('string'),
   isbn: DS.attr('string'),
   cover: DS.attr('string'),
-  publisher: DS.belongsTo('publisher'),
-  authors: DS.hasMany('author', { async: true })
+  publisher: DS.belongsTo('publisher', { async: false }),
+  authors: DS.hasMany('author', { async: false })
 });
