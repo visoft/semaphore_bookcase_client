@@ -19,6 +19,6 @@
 </div>
 {{#each filteredBooks as |book|}}
   <div class="book" data-title="{{book.title}}">
-    <img src="{{book.cover}}" height="160" />
+    {{#link-to "book" book}}<img src="{{book.cover}}" height="160" />{{/link-to}}
   </div>
 {{/each}}
