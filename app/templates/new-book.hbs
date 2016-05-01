@@ -2,16 +2,28 @@
   <form>
     <div class="form-group">
       <label>Title</label>
-      {{input value=model.title class="form-control title"}}
+      {{input value=model.book.title class="form-control title"}}
     </div>
     <div class="form-group">
       <label>ISBN</label>
-      {{input value=model.isbn class="form-control isbn"}}
+      {{input value=model.book.isbn class="form-control isbn"}}
     </div>
     <div class="form-group">
       <label>Cover</label>
-      {{input value=model.cover class="form-control cover"}}
+      {{input value=model.book.cover class="form-control cover"}}
     </div>
-    <button type="submit" class="btn btn-primary" {{action 'save' model}}>Submit</button>
+    <div class="form-group">
+      <label>Publisher</label>
+      {{#power-select
+          searchEnabled=false
+          selected=model.book.publisher
+          options=model.publishers
+          onchange=(action (mut model.book.publisher))
+          as |publisher|
+      }}
+        {{publisher.name}}
+      {{/power-select}}
+    </div>
+    <button type="submit" class="btn btn-primary" {{action 'save' model.book}}>Submit</button>
   </form>
 </div>

@@ -2,7 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model: function() {
-    return this.store.createRecord('book');
+    return new Ember.RSVP.hash({
+      book: this.store.createRecord('book'),
+      publishers: this.store.findAll('publisher')
+    });
   },
   actions: {
     save: function(model) {
