@@ -8,5 +8,6 @@
     <li class="author">{{author.name}}</li>
     {{/each}}
   </ul>
+  {{#link-to "update-book" model.id class="btn btn-default"}}Edit{{/link-to}}
   <button class="btn btn-danger" {{action "delete" model}}>Delete</button>
 </div>
